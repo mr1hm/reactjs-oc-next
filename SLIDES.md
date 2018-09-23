@@ -9,23 +9,117 @@ Building Server-rendered React Apps with Next.js
 
 class: center, middle
 
-<svg width="328" height="200" viewBox="0 0 148 90" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M34.992 23.495h27.855v2.219H37.546v16.699h23.792v2.219H37.546v18.334h25.591v2.219H34.992v-41.69zm30.35 0h2.96l13.115 18.334 13.405-18.334L113.055.207 83.1 43.756l15.436 21.429H95.46L81.417 45.683 67.316 65.185h-3.018L79.85 43.756 65.343 23.495zm34.297 2.219v-2.219h31.742v2.219h-14.623v39.47h-2.554v-39.47H99.64zM.145 23.495h3.192l44.011 66.003L29.16 65.185 2.814 26.648l-.116 38.537H.145v-41.69zm130.98 38.801c-.523 0-.914-.405-.914-.928 0-.524.391-.929.913-.929.528 0 .913.405.913.929 0 .523-.385.928-.913.928zm2.508-2.443H135c.019.742.56 1.24 1.354 1.24.888 0 1.391-.535 1.391-1.539v-6.356h1.391v6.362c0 1.808-1.043 2.849-2.77 2.849-1.62 0-2.732-1.01-2.732-2.556zm7.322-.08h1.379c.118.853.95 1.395 2.149 1.395 1.117 0 1.937-.58 1.937-1.377 0-.685-.521-1.097-1.708-1.377l-1.155-.28c-1.62-.38-2.36-1.166-2.36-2.487 0-1.602 1.304-2.668 3.26-2.668 1.82 0 3.15 1.066 3.23 2.58h-1.354c-.13-.828-.85-1.346-1.894-1.346-1.1 0-1.832.53-1.832 1.34 0 .642.472 1.01 1.64 1.284l.987.243c1.838.43 2.596 1.178 2.596 2.53 0 1.72-1.33 2.799-3.453 2.799-1.987 0-3.323-1.029-3.422-2.637z" fill="#000" fill-rule="nonzero"></path></svg>
+![Next](./images/next.svg)
+
+???
+
+### What is Next.js?
 
 ---
 
 class: middle
 
-## Installing
+> ## Next.js is a minimalistic framework for server-rendered React applications.
+>
+> ### \- zeit
+
+---
+
+class: center, middle
+
+![Zeit](./images/zeit.png)
+
+???
+
+Next.js is developed by a company named Zeit.
+
+They're behind a handful of really cool projects in the Open Source community as well as a streamlined serverless deployment service called `now`. And their team members are responsible for other libraries you may have used (`socket.io` for realtime apps or the `mongoose` Object-Document Mapper for MongoDB). Plus a bunch more, I'm sure.
+
+---
+
+class: middle
+
+# 🔭 Overview
+----
+
+### 1. Getting Started with Next.js
+### 2. Server-Side Rendering
+### 3. Routing
+### 4. Code Splitting
+### 5. Loading Data
+### 6. Customizing Webpack
+### 7. Evaluating Next.js
+
+???
+
+We're going to cover a handful of things, many of which fade into the background while developing a Next.js application. But talking about them may help you get a sense of whether Next.js fits the bill for your next project; personal or professional.
+
+---
+
+class: middle, center
+
+# 👶 Setting Up
+
+???
+
+We'll start out by seeing how simple it is to begin building an application with Next.js. There are actually only 3 tiny steps.
+
+If you've ever worked in a modern JavaScript project, it's almost laughable, and certainly refreshing.
+
+---
+
+class: middle, center
+
+# ⛓ Dependencies
+
+???
+
+Step one is to install a couple of dependencies.
+
+---
+
+class: middle
 
 ```bash
-npm install -S next react react-dom
+# create a package.json
+npm init --yes
+# install required dependencies
+npm install --save next react react-dom
 ```
+
+???
+
+First we need a `package.json` and some dependencies.
+
+The only _required_ dependecies when using next include `react` and `react-dom`, just like any basic React web project.
 
 ---
 
 class: middle
 
-## NPM Scripts
+> ## Next.js only supports React 16.
+> ### We had to drop React 15 support due to the way React 16 works and how we use it.
+> ### \- zeit
+
+???
+
+Something to keep in mind: The latest version of Next.js relies on features added to React 16. So if you are somehow constrained to an older version of React, maybe save Next.js for something greenfield. Next.js is maintained by a company with its own development resources and priorities so, as usual, we're just along for the ride.
+
+---
+
+class: middle, center
+
+# 🤖 Scripts
+
+???
+
+Step Two is adding a couple of NPM scripts to `package.json`.
+
+The Next.js package includes a command line executable that we can use in our `package.json` scripts.
+
+---
+
+class: middle
 
 ```json
 {
@@ -37,55 +131,120 @@ class: middle
 }
 ```
 
+???
+
+If you are not familiar with NPM scripts, they're a property of the `Object` defined in `package.json` named `"scripts"`. The keys on the left are arbitrary names given to shell commands on the right. You execute them by name from the command line with the `npm run` command. No global CLI install is required and this way, the commands used to work on the project are as portable as NPM itself. These `dev`, `build`, and `start` script names are not mandatory for using Next.js; just an example.
+
+---
+
+class: middle, center
+
+# 📁 Pages
+
+???
+
+Lastly, we need to create a directory and at least one React component.
+
 ---
 
 class: middle
 
-## Class Component
+```bash
+# make a "pages/" directory
+mkdir pages/
+# make a page component
+code pages/index.js
+```
+
+???
+
+The `pages/` directory is where Next.js looks for the various screens in our application. It's similar to how a web server serves static files, except that instead of HTML or image files, you populate it with React components. This directory is mandatory. The name `pages/` used to be configurable, but not for any good reason so it's not anymore.
+
+---
+
+class: middle
 
 ```jsx
+// pages/index.js
+
+export default function Index() {
+  return (
+    <h1>Hello, ReactJS OC&#33;</h1>
+  )
+}
+```
+
+???
+
+Here's a simplistic Next.js page.
+
+---
+
+class: middle
+
+```jsx
+// pages/index.js
+
 import { Component } from 'react'
 
-export default class MyPage extends Component {
-  static async getInitialProps() {
-    const data = await fetchData()
-    return { data }
-  }
+export default class Index extends Component {
   render() {
     return (
-      <div>
-        <h1>Initial Props</h1>
-        <pre>
-          { JSON.stringify(this.props.data, null, 2) }
-        </pre>
-      </div>
+      <h1>Hello, ReactJS OC&#33;</h1>
     )
   }
 }
 ```
 
+???
+
+It could also be a `class` component. That doesn't matter; it just needs to be the `default` export either way.
+
+---
+
+class: middle, center
+
+# 🚀 RUN IT
+
 ---
 
 class: middle
 
-## Function Component
-
-```jsx
-function MyPage(props) {
-  return (
-    <div>
-      <h1>Initial Props</h1>
-      <pre>
-        { JSON.stringify(props.data, null, 2) }
-      </pre>
-    </div>
-  )
-}
-
-MyPage.getInitialProps = async () => {
-  const data = await fetchData()
-  return { data }
-}
-
-export default MyPage
+```bash
+.
+├── node_modules/
+│   ├── next/
+│   ├── react/
+│   └── react-dom/
+├── pages/
+│   └── index.js
+└── package.json
 ```
+
+???
+
+By this point, this is what we're working in.
+
+We installed three dependencies: `next`, `react`, and `react-dom`. We added some scripts to `package.json`. We created a `pages/` directory with a component in it.
+
+---
+
+class: middle, center
+
+# 🎓 Setting Up
+
+???
+
+Building "Hello, World!" with Next.js is very straight-forward. There isn't a ton of boilerplate code and configuration needed.
+
+---
+
+class: middle
+
+> ## Next.js is a **minimalistic** framework for server-rendered **React** applications.
+>
+> ### \- zeit
+
+???
+
+They're not lying so far.

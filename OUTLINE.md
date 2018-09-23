@@ -1,6 +1,7 @@
 ## Intro
 
 - Topic: Next.js
+- What is it?
 - Overview
   - Setting Up
   - Server-Side Rendering
@@ -8,18 +9,17 @@
   - Code Splitting
   - Loading Data
   - Customizing Webpack
-  - Example CLI
+  - Evaluating Next.js
 - Me: Tim Davis @ OC|CS
 
 ## Setting Up
 
-- Initialize Project
-- Add Dependencies
+- Initialize Project and Add Dependencies
 - Add Scripts
 - Create A "Page"
   - Default Export
   - Implicit React in Scope
-  - OOTB HMR
+- OOTB HMR
 - Directory Structure
 - LOOK AT IT
 
