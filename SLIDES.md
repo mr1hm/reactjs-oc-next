@@ -248,3 +248,114 @@ class: middle
 ???
 
 They're not lying so far.
+
+---
+
+class: middle, center
+
+# 👶 Server-Side Rendering
+
+---
+
+class: middle, center
+
+# SPA
+
+```html
+<div id="root"></div>
+```
+
+---
+
+class: middle, center
+
+# SSR
+
+```html
+<div id="__next">
+  <h1>Hello, ReactJS OC!</h1>
+  <h2>You handsome devils...</h2>
+</div>
+```
+
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/ssr-pe.png"/>
+
+---
+
+class: middle
+
+```jsx
+import MetaTags from 'react-meta-tags'
+
+export default function App() {
+  return (
+    <>
+      <MetaTags>
+        <meta property="og:site_name" content="SSR Demo!"/>
+        <meta property="og:title" content="Building Server-Rendered React apps with Next.js"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:description" content="Tue, Sep 25, 2018, 6:30 PM: Building Server-Rendered React apps with Next.jsTim Davis – Instructor at Orange County Code SchoolSetting up routing for a React project can get pretty complex. How do you"/>
+        <meta property="og:url" content="http://localhost:3000/"/>
+        <meta property="og:image" content="https://secure.meetupstatic.com/photos/event/d/6/3/2/600_474714834.jpeg"/>
+      </MetaTags>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+    </>
+  )
+}
+```
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/spa-og.png"/>
+
+---
+
+class: middle
+
+```jsx
+import NextHead from 'next/head'
+
+export default function Index() {
+  return (
+    <>
+      <NextHead>
+        <meta property="og:site_name" content="SSR Demo!"/>
+        <meta property="og:title" content="Building Server-Rendered React apps with Next.js"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:description" content="Tue, Sep 25, 2018, 6:30 PM: Building Server-Rendered React apps with Next.jsTim Davis – Instructor at Orange County Code SchoolSetting up routing for a React project can get pretty complex. How do you"/>
+        <meta property="og:url" content="http://localhost:3000/"/>
+        <meta property="og:image" content="https://secure.meetupstatic.com/photos/event/d/6/3/2/600_474714834.jpeg"/>
+      </NextHead>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+    </>
+  )
+}
+```
+
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/ssr-og.png"/>
+
+---
+
+class: middle
+
+[Full Article](https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-4-site-is-progressively-enhanced-b5ad7cf7a447s)
+
+> ## Progressive Web Apps with React.js
+> ### - Addy Osmani
+
+---
+
+class: middle, center
+
+# 🎓 Server-Side Rendering

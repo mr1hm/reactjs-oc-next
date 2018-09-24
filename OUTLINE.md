@@ -27,9 +27,8 @@
 
 - What is
 - Contrasted to empty `div` SPA
-- Time to first paint & SEO
-- LOOK AT IT
-- Escape Hatch with Dynamic
+- Time to first paint
+- Use case: Open Graph
 
 ## Routing
 
