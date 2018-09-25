@@ -11,10 +11,6 @@ class: center, middle
 
 ![Next](./images/next.svg)
 
-???
-
-### What is Next.js?
-
 ---
 
 class: middle
@@ -28,12 +24,6 @@ class: middle
 class: center, middle
 
 ![Zeit](./images/zeit.png)
-
-???
-
-Next.js is developed by a company named Zeit.
-
-They're behind a handful of really cool projects in the Open Source community as well as a streamlined serverless deployment service called `now`. And their team members are responsible for other libraries you may have used (`socket.io` for realtime apps or the `mongoose` Object-Document Mapper for MongoDB). Plus a bunch more, I'm sure.
 
 ---
 
@@ -50,9 +40,30 @@ class: middle
 ### 6. Customizing Webpack
 ### 7. Evaluating Next.js
 
-???
+---
 
-We're going to cover a handful of things, many of which fade into the background while developing a Next.js application. But talking about them may help you get a sense of whether Next.js fits the bill for your next project; personal or professional.
+class: middle, center
+
+# 🍊 Orange County Code School
+
+---
+
+class: middle, center
+### ❤️ ❤️ ❤️
+# 👩🏻
+### 😸 😾
+
+---
+
+class: middle, center
+
+![juniors](./images/juniors.gif)
+
+---
+
+class: middle, center
+
+![go](./images/go.gif)
 
 ---
 
@@ -60,21 +71,11 @@ class: middle, center
 
 # 👶 Setting Up
 
-???
-
-We'll start out by seeing how simple it is to begin building an application with Next.js. There are actually only 3 tiny steps.
-
-If you've ever worked in a modern JavaScript project, it's almost laughable, and certainly refreshing.
-
 ---
 
 class: middle, center
 
 # ⛓ Dependencies
-
-???
-
-Step one is to install a couple of dependencies.
 
 ---
 
@@ -87,12 +88,6 @@ npm init --yes
 npm install --save next react react-dom
 ```
 
-???
-
-First we need a `package.json` and some dependencies.
-
-The only _required_ dependecies when using next include `react` and `react-dom`, just like any basic React web project.
-
 ---
 
 class: middle
@@ -101,21 +96,11 @@ class: middle
 > ### We had to drop React 15 support due to the way React 16 works and how we use it.
 > ### \- zeit
 
-???
-
-Something to keep in mind: The latest version of Next.js relies on features added to React 16. So if you are somehow constrained to an older version of React, maybe save Next.js for something greenfield. Next.js is maintained by a company with its own development resources and priorities so, as usual, we're just along for the ride.
-
 ---
 
 class: middle, center
 
 # 🤖 Scripts
-
-???
-
-Step Two is adding a couple of NPM scripts to `package.json`.
-
-The Next.js package includes a command line executable that we can use in our `package.json` scripts.
 
 ---
 
@@ -131,19 +116,11 @@ class: middle
 }
 ```
 
-???
-
-If you are not familiar with NPM scripts, they're a property of the `Object` defined in `package.json` named `"scripts"`. The keys on the left are arbitrary names given to shell commands on the right. You execute them by name from the command line with the `npm run` command. No global CLI install is required and this way, the commands used to work on the project are as portable as NPM itself. These `dev`, `build`, and `start` script names are not mandatory for using Next.js; just an example.
-
 ---
 
 class: middle, center
 
 # 📁 Pages
-
-???
-
-Lastly, we need to create a directory and at least one React component.
 
 ---
 
@@ -155,10 +132,6 @@ mkdir pages/
 # make a page component
 code pages/index.jsx
 ```
-
-???
-
-The `pages/` directory is where Next.js looks for the various screens in our application. It's similar to how a web server serves static files, except that instead of HTML or image files, you populate it with React components. This directory is mandatory. The name `pages/` used to be configurable, but not for any good reason so it's not anymore.
 
 ---
 
@@ -196,10 +169,6 @@ export default class Index extends Component {
 }
 ```
 
-???
-
-It could also be a `class` component. That doesn't matter; it just needs to be the `default` export either way.
-
 ---
 
 class: middle, center
@@ -221,12 +190,6 @@ class: middle
 └── package.json
 ```
 
-???
-
-By this point, this is what we're working in.
-
-We installed three dependencies: `next`, `react`, and `react-dom`. We added some scripts to `package.json`. We created a `pages/` directory with a component in it.
-
 ---
 
 class: middle
@@ -246,10 +209,6 @@ export default function Index() {
 class: middle, center
 
 # 🎓 Setting Up
-
-???
-
-Building "Hello, World!" with Next.js is very straight-forward. There isn't a ton of boilerplate code and configuration needed.
 
 ---
 
@@ -460,11 +419,20 @@ class: middle, center
 class: middle
 
 ```jsx
-componentDidMount() {
-  NProgress.configure({ showSpinner: false })
-  Router.events.on('routeChangeStart', () => NProgress.start())
-  Router.events.on('routeChangeError', () => NProgress.done())
-  Router.events.on('routeChangeComplete', () => NProgress.done())
+// pages/_app.js
+
+import NextApp from 'next/app'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+
+NProgress.configure({ showSpinner: false })
+
+export default class App extends NextApp {
+  componentDidMount() {
+    Router.events.on('routeChangeStart', () => NProgress.start())
+    Router.events.on('routeChangeError', () => NProgress.done())
+    Router.events.on('routeChangeComplete', () => NProgress.done())
+  }
 }
 ```
 
@@ -588,4 +556,181 @@ class: middle
     "start": "NODE_ENV=production node server.js"
   }
 }
+```
+
+---
+
+class: middle, center
+
+# 🎓 Routing
+
+---
+
+class: middle, center
+
+# 👶 Data Fetching
+
+---
+
+class: middle, center
+
+# 🔁 `componentDidMount`
+
+---
+
+class: middle
+
+```jsx
+export default class ViewMessages extends Component {
+  componentDidMount() {
+    fetch('/messages')
+      .then(res => res.json())
+      .then(messages => this.setState({ messages }))
+  }
+  render() {
+    return this.state.messages.length
+      ? <MessageList messages={this.state.messages}/>
+      : <div>Loading...</div>
+  }
+}
+```
+
+---
+
+class: middle
+
+```html
+<span>Loading...</span>
+```
+
+---
+
+class: middle
+
+```html
+<div id="root"></div>
+```
+
+---
+
+class: middle, center
+
+# 💡 `getInitialProps`
+
+---
+
+class: middle
+
+```bash
+npm install --save isomorphic-fetch
+```
+
+---
+
+class: middle
+
+```bash
+npm install --save isomorphic-unfetch
+```
+
+---
+
+class: middle
+
+```bash
+npm install --save apollo-boost graphql react-apollo isomorphic-unfetch
+```
+
+---
+
+class: middle
+
+```bash
+npm install --save axios
+```
+
+---
+
+class: middle
+
+```jsx
+// pages/users.jsx
+
+import axios from 'axios'
+import { Component } from 'react'
+import UserList from '../components/user/user-list'
+
+export default class Users extends Component {
+  static async getInitialProps() {
+    const url = 'https://jsonplaceholder.typicode.com/users'
+    const { data: users } = await axios.get(url)
+    return { users }
+  }
+  render() {
+    return <UserList users={this.props.users}/>
+  }
+}
+```
+
+---
+
+class: middle
+
+```jsx
+// pages/users.jsx
+
+import axios from 'axios'
+import UserList from '../components/user/user-list'
+
+function Users(props) {
+  return <UserList users={props.users}/>
+}
+
+Users.getInitialProps = async () => {
+  const url = 'https://jsonplaceholder.typicode.com/users'
+  const { data: users } = await axios.get(url)
+  return { users }
+}
+
+export default Users
+```
+
+---
+
+class: middle
+
+```jsx
+export default class Users extends Component {
+  static async getInitialProps(context) {
+
+  }
+  render() {
+    return <UserList users={this.props.users}/>
+  }
+}
+```
+
+---
+
+class: middle, center
+
+# 🤦‍
+
+---
+
+class: middle
+
+```js
+Object.keys(context)
+/**
+ * [
+ *   "pathname",
+ *   "query",
+ *   "asPath",
+ *   "req", <- SERVER ONLY
+ *   "res", <- SERVER ONLY
+ *   "jsonPageRes", 🤷‍
+ *   "err"
+ * ]
+ * /
 ```

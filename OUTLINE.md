@@ -42,11 +42,9 @@
 ## Loading Data
 
 - `componentDidMount`
-- `getInitialProps`
-- Server vs Client
 - Use an environment-agnostic client
-- `pageProps`
-- LOOK AT IT
+- `getInitialProps`
+- Context
 
 ## Code Splitting
 
