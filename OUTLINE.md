@@ -29,6 +29,12 @@
 - Time to first paint
 - Use case: Open Graph
 
+## Code Splitting
+
+- SPA Syndrome
+- Page Entry Points
+- Prefetch
+
 ## Routing
 
 - FS: `pages/` Directory
@@ -45,13 +51,6 @@
 - Use an environment-agnostic client
 - `getInitialProps`
 - Context
-
-## Code Splitting
-
-- Next Build
-- Page Entry Points
-- Preload
-- Prefetch
 
 ## Custom Webpack
 

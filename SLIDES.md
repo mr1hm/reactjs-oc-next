@@ -27,31 +27,9 @@ class: center, middle
 
 ---
 
-class: middle
-
-# 🔭 Overview
-----
-
-### 1. Setting Up
-### 2. Server-Side Rendering
-### 3. Routing
-### 4. Code Splitting
-### 5. Loading Data
-### 6. Customizing Webpack
-### 7. Evaluating Next.js
-
----
-
 class: middle, center
 
 # 🍊 Orange County Code School
-
----
-
-class: middle, center
-### ❤️ ❤️ ❤️
-# 👩🏻
-### 😸 😾
 
 ---
 
@@ -66,6 +44,22 @@ class: middle, center
 ![go](./images/go.gif)
 
 ---
+
+class: middle
+
+# 🔭 Overview
+----
+
+### 1. Setting Up
+### 2. Server-Side Rendering
+### 4. Code Splitting
+### 3. Routing
+### 5. Data Fetching
+### 6. Customizing Webpack
+### 7. Evaluating Next.js
+
+---
+
 
 class: middle, center
 
@@ -308,18 +302,65 @@ class: middle, center
 
 ---
 
-class: middle
+class: middle, center
 
-[Full Article](https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-4-site-is-progressively-enhanced-b5ad7cf7a447s)
-
-> ## Progressive Web Apps with React.js
-> ### - Addy Osmani
+# 🎓 Server-Side Rendering
 
 ---
 
 class: middle, center
 
-# 🎓 Server-Side Rendering
+# 👶 Code Splitting
+
+---
+
+class: middle
+
+```html
+<body>
+  <div id="root"></div>
+  <script src="main.js"></script>
+</body>
+```
+
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/the-universe.png"/>
+
+---
+
+class: middle, center
+
+# ⌛️ Async
+
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/async.png"/>
+
+---
+
+class: middle, center
+
+<img style="max-width: 100%" src="./images/current-page.png"/>
+
+---
+
+class: middle, center
+
+# 🎓 Code Splitting
+
+---
+
+class: middle
+
+[Full Article](https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-i-introduction-50679aef2b12)
+
+> ## Progressive Web Apps with React.js
+> ### - Addy Osmani
 
 ---
 
@@ -476,6 +517,27 @@ class: middle
 
 ---
 
+class: middle
+
+```jsx
+// pages/index.jsx
+
+import Link from 'next/link'
+
+export default function Index() {
+  return (
+    <>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+      <Link prefetch href="/about" passHref>
+        <a>Learn More</a>
+      </Link>
+    </>
+  )
+}
+```
+---
+
 class: middle, center
 
 # 👺 Route Masking
@@ -509,7 +571,7 @@ class: middle
 ```html
 <h1>Hello, ReactJS OC!</h1>
 <h2>You handsome devils...</h2>
-<a href="/about">Learn More</a>
+<a href="/info">Learn More</a>
 ```
 
 ---
@@ -600,15 +662,7 @@ export default class ViewMessages extends Component {
 class: middle
 
 ```html
-<span>Loading...</span>
-```
-
----
-
-class: middle
-
-```html
-<div id="root"></div>
+<div>Loading...</div>
 ```
 
 ---
@@ -714,7 +768,7 @@ export default class Users extends Component {
 
 class: middle, center
 
-# 🤦‍
+# 🤦‍ "Context"
 
 ---
 
@@ -734,3 +788,58 @@ Object.keys(context)
  * ]
  * /
 ```
+
+---
+
+class: middle, center
+
+# 🎓 Data Fetching
+
+---
+
+class: middle, center
+
+# 🤷‍ Customizing Webpack
+
+```jsx
+// next.config.js
+
+module.exports = {
+  webpack(config, { buildId, dev, isServer, defaultLoaders }) {
+    return config
+  },
+  webpackDevMiddleware(config) {
+    return config
+  }
+}
+```
+
+---
+
+class: middle, center
+
+# 🚀 Trying Next.js
+
+---
+
+class: middle, center
+
+# 👩‍🔬 Recipe-Style Docs
+### https://nextjs.org/docs
+
+---
+
+class: middle, center
+
+# 🖼 Tons (100+) of Example Integrations
+### https://github.com/zeit/next.js/tree/master/examples
+
+---
+
+class: middle, center
+
+#### 🍊 https://orangecountycodeschool.com
+### https://github.com/thebearingedge/reactjs-oc-next
+### ❤️ ❤️ ❤️
+# 👩🏻
+### 😸 😾
