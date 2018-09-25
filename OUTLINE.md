@@ -21,7 +21,6 @@
   - Implicit React in Scope
 - OOTB HMR
 - Directory Structure
-- LOOK AT IT
 
 ## Server-Side Rendering
 
@@ -33,11 +32,12 @@
 ## Routing
 
 - FS: `pages/` Directory
-- Imperative
-  - LOOK AT IT
-- Link Component
-  - LOOK AT IT
 - Free `404`
+- Imperative
+- HOC
+- Link Component
+- Masking
+- Server Side
 
 ## Loading Data
 

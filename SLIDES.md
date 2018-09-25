@@ -42,7 +42,7 @@ class: middle
 # 🔭 Overview
 ----
 
-### 1. Getting Started with Next.js
+### 1. Setting Up
 ### 2. Server-Side Rendering
 ### 3. Routing
 ### 4. Code Splitting
@@ -153,7 +153,7 @@ class: middle
 # make a "pages/" directory
 mkdir pages/
 # make a page component
-code pages/index.js
+code pages/index.jsx
 ```
 
 ???
@@ -165,7 +165,7 @@ The `pages/` directory is where Next.js looks for the various screens in our app
 class: middle
 
 ```jsx
-// pages/index.js
+// pages/index.jsx
 
 export default function Index() {
   return (
@@ -183,7 +183,7 @@ Here's a simplistic Next.js page.
 class: middle
 
 ```jsx
-// pages/index.js
+// pages/index.jsx
 
 import { Component } from 'react'
 
@@ -217,7 +217,7 @@ class: middle
 │   ├── react/
 │   └── react-dom/
 ├── pages/
-│   └── index.js
+│   └── index.jsx
 └── package.json
 ```
 
@@ -229,6 +229,20 @@ We installed three dependencies: `next`, `react`, and `react-dom`. We added some
 
 ---
 
+class: middle
+
+```jsx
+// pages/index.jsx
+
+export default function Index() {
+  return (
+    <h1>Hello, ReactJS OC&#33;</h1>
+  )
+}
+```
+
+---
+
 class: middle, center
 
 # 🎓 Setting Up
@@ -236,18 +250,6 @@ class: middle, center
 ???
 
 Building "Hello, World!" with Next.js is very straight-forward. There isn't a ton of boilerplate code and configuration needed.
-
----
-
-class: middle
-
-> ## Next.js is a **minimalistic** framework for server-rendered **React** applications.
->
-> ### \- zeit
-
-???
-
-They're not lying so far.
 
 ---
 
@@ -359,3 +361,231 @@ class: middle
 class: middle, center
 
 # 🎓 Server-Side Rendering
+
+---
+
+class: middle, center
+
+# 👶 Routing
+
+---
+
+class: middle, center
+
+# 🕸 Server
+
+---
+
+class: middle
+
+```bash
+.
+├── node_modules/
+├── pages/
+│   ├── users/
+│   │   └── index.jsx
+│   ├── posts/
+│   │   └── index.jsx
+│   ├── about.jsx
+│   └── index.jsx
+└── package.json
+```
+
+---
+
+class: middle, center
+
+# 📱 Client
+
+---
+
+class: middle
+
+```jsx
+// pages/index.jsx
+
+import Router from 'next/router'
+
+export default function Index() {
+  return (
+    <>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+      <button className="link" onClick={() => Router.push('/about')}>
+        Learn More
+      </button>
+    </>
+  )
+}
+```
+
+---
+
+class: middle, center
+
+# 👼 Higher-Order Component
+
+---
+
+class: middle
+
+```jsx
+// containers/home-container.jsx
+
+import { withRouter } from 'next/router'
+
+export function HomeContainer({ router }) {
+  return (
+    <>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+      <button className="link" onClick={() => router.push('/about')}>
+        Learn More
+      </button>
+    </>
+  )
+}
+
+export default withRouter(HomeContainer)
+```
+
+---
+
+class: middle, center
+
+# ⚡️ Events
+
+---
+
+class: middle
+
+```jsx
+componentDidMount() {
+  NProgress.configure({ showSpinner: false })
+  Router.events.on('routeChangeStart', () => NProgress.start())
+  Router.events.on('routeChangeError', () => NProgress.done())
+  Router.events.on('routeChangeComplete', () => NProgress.done())
+}
+```
+
+---
+
+class: middle, center
+
+# `<Link/>`
+
+---
+
+class: middle
+
+```jsx
+// pages/index.jsx
+
+import Link from 'next/link'
+
+export default function Index() {
+  return (
+    <>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+      <Link href="/about" passHref>
+        <a>Learn More</a>
+      </Link>
+    </>
+  )
+}
+```
+
+---
+
+class: middle
+
+```html
+<h1>Hello, ReactJS OC!</h1>
+<h2>You handsome devils...</h2>
+<a href="/about">Learn More</a>
+```
+
+---
+
+class: middle, center
+
+# 👺 Route Masking
+
+---
+
+class: middle
+
+```jsx
+// pages/index.jsx
+
+import Link from 'next/link'
+
+export default function Index() {
+  return (
+    <>
+      <h1>Hello, ReactJS OC!</h1>
+      <h2>You handsome devils...</h2>
+      <Link href="/about" as="/info" passHref>
+        <a>Learn More</a>
+      </Link>
+    </>
+  )
+}
+```
+
+---
+
+class: middle
+
+```html
+<h1>Hello, ReactJS OC!</h1>
+<h2>You handsome devils...</h2>
+<a href="/about">Learn More</a>
+```
+
+---
+
+class: middle, center
+
+# ☁️ Server-Side
+
+---
+
+class: middle
+
+```js
+const next = require('next')
+const express = require('express')
+
+const dev = process.env.NODE_ENV !== 'production'
+const pages = next({ dev })
+
+pages
+  .prepare()
+  .then(() => {
+    const app = express()
+    const handle = pages.getRequestHandler()
+    app.get('/info', (req, res) => {
+      pages.render(req, res, '/about')
+    })
+    app.get('*', (req, res) => {
+      handle(req, res)
+    })
+    app.listen(process.env.PORT)
+  })
+```
+
+---
+
+class: middle
+
+```json
+{
+  "scripts": {
+    "dev": "nodemon server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  }
+}
+```
