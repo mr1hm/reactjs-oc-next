@@ -5,4 +5,4 @@ Building Server-rendered React Apps with Next.js
 
 ## Slides
 
-See the slides at [https://thebearingedge.github.io/reactjs-oc-next](thebearingedge.github.io/reactjs-oc-next)
+See the slides at [thebearingedge.github.io/reactjs-oc-next](https://thebearingedge.github.io/reactjs-oc-next)
